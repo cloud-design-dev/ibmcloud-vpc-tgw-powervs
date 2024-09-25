@@ -1,3 +1,11 @@
+# Overview
+
+Connect on-prem to VPC and PowerVS using Client to Site VPN. 
+
+
+![Diagram](./vpc-tgw-power.png)
+
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
