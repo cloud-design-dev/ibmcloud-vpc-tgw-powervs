@@ -2,13 +2,12 @@ variable "ibmcloud_api_key" {
   description = "The IBM Cloud API key needed to deploy the VPC"
   type        = string
   sensitive   = true
-  default     = null
 }
 
 variable "ibmcloud_region" {
   description = "The IBM Cloud region where the VPC, Power, and related resources will be deployed"
   type        = string
-  default     = "us-east"
+  default     = "us-south"
 }
 
 variable "project_prefix" {
@@ -26,7 +25,6 @@ variable "existing_resource_group" {
 variable "existing_secrets_manager_instance" {
   description = "The name of an existing Secrets Manager instance"
   type        = string
-  default     = ""
 }
 
 variable "vpn_client_cidr" {
@@ -51,7 +49,7 @@ variable "default_address_prefix" {
 variable "power_zone" {
   description = "The zone to deploy the PowerVS instance"
   type        = string
-  default     = "wdc07"
+  default     = "dal12"
 }
 
 variable "compute_base_image" {

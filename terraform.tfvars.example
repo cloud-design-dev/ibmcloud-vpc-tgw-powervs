@@ -1,4 +1,0 @@
-ibmcloud_api_key = "ybbvU9rSsRguq2tltzAb1Nu5Vr1g0rKXOVaJwBjFD6SE"
-ibmcloud_region = "us-east"
-existing_resource_group = "Default"
-existing_secrets_manager_instance = "dts-sm-instance"

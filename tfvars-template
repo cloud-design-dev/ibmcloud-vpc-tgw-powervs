@@ -1,0 +1,18 @@
+# IBM Cloud API key for the account
+ibmcloud_api_key = ""
+
+# IBM Cloud region where VPC and PowerVS resources will be created
+ibmcloud_region = ""
+
+# Project prefix for naming resources. If not set, a random string will be generated and used as prefix
+project_prefix = ""
+
+# IBM Cloud resource group where VPC and PowerVS resources will be created
+existing_resource_group = ""
+
+# Name of an existing Secrets Manager instance 
+existing_secrets_manager_instance = ""
+
+# Name of the zone in PowerVS region where you want to create the PowerVS resources. 
+# See note here about this value https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_workspace#notes
+power_zone = ""
