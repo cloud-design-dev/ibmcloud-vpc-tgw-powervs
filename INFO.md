@@ -23,15 +23,21 @@
 
 | Name | Type |
 |------|------|
+| [ibm_iam_access_group.vpn](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/iam_access_group) | resource |
+| [ibm_iam_access_group_members.vpn_members](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/iam_access_group_members) | resource |
+| [ibm_iam_access_group_policy.vpn_policy](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/iam_access_group_policy) | resource |
 | [ibm_iam_authorization_policy.secret_group_to_vpn](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/iam_authorization_policy) | resource |
 | [ibm_is_instance.compute](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_instance) | resource |
 | [ibm_is_public_gateway.gateway](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_public_gateway) | resource |
 | [ibm_is_subnet.vpn](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_subnet) | resource |
 | [ibm_is_virtual_network_interface.compute](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_virtual_network_interface) | resource |
 | [ibm_is_vpc.vpc](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_vpc) | resource |
+| [ibm_is_vpc_routing_table.vpn_routing_table](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_vpc_routing_table) | resource |
 | [ibm_is_vpn_server.client_to_site](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_vpn_server) | resource |
 | [ibm_is_vpn_server_route.internet](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_vpn_server_route) | resource |
+| [ibm_is_vpn_server_route.power](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_vpn_server_route) | resource |
 | [ibm_is_vpn_server_route.vpc](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/is_vpn_server_route) | resource |
+| [ibm_pi_instance.linux](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/pi_instance) | resource |
 | [ibm_pi_network.power_network](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/pi_network) | resource |
 | [ibm_pi_workspace.workspace](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/pi_workspace) | resource |
 | [ibm_sm_private_certificate.sm_private_certificate](https://registry.terraform.io/providers/IBM-Cloud/ibm/1.70.0-beta0/docs/resources/sm_private_certificate) | resource |
@@ -61,15 +67,20 @@
 | <a name="input_existing_secrets_manager_instance"></a> [existing\_secrets\_manager\_instance](#input\_existing\_secrets\_manager\_instance) | The name of an existing Secrets Manager instance | `string` | n/a | yes |
 | <a name="input_existing_ssh_key"></a> [existing\_ssh\_key](#input\_existing\_ssh\_key) | Name of an existing SSH key in the region. | `string` | `""` | no |
 | <a name="input_ibmcloud_api_key"></a> [ibmcloud\_api\_key](#input\_ibmcloud\_api\_key) | The IBM Cloud API key needed to deploy the VPC | `string` | n/a | yes |
-| <a name="input_ibmcloud_region"></a> [ibmcloud\_region](#input\_ibmcloud\_region) | The IBM Cloud region where the VPC, Power, and related resources will be deployed | `string` | `"us-south"` | no |
+| <a name="input_ibmcloud_region"></a> [ibmcloud\_region](#input\_ibmcloud\_region) | The IBM Cloud region where the VPC, Power, and related resources will be deployed | `string` | `""` | no |
+| <a name="input_power_image_id"></a> [power\_image\_id](#input\_power\_image\_id) | The ID of the PowerVS image to use for the PowerVS instance | `string` | `"264ab16d-e5d3-4817-8757-4f8a20ae87e5"` | no |
 | <a name="input_power_zone"></a> [power\_zone](#input\_power\_zone) | The zone to deploy the PowerVS instance | `string` | `"dal12"` | no |
 | <a name="input_project_prefix"></a> [project\_prefix](#input\_project\_prefix) | The prefix to use for naming resources. If not provided, a random string will be generated. | `string` | `""` | no |
+| <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | Region where Secrets manager instance is provisioned | `string` | `""` | no |
 | <a name="input_vpn_client_cidr"></a> [vpn\_client\_cidr](#input\_vpn\_client\_cidr) | CIDR block for VPN clients | `string` | `"172.16.0.0/22"` | no |
+| <a name="input_vpn_users"></a> [vpn\_users](#input\_vpn\_users) | n/a | `list` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_power_network"></a> [power\_network](#output\_power\_network) | n/a |
-| <a name="output_power_workspace"></a> [power\_workspace](#output\_power\_workspace) | n/a |
+| <a name="output_power_instance_ip"></a> [power\_instance\_ip](#output\_power\_instance\_ip) | n/a |
+| <a name="output_power_network_id"></a> [power\_network\_id](#output\_power\_network\_id) | n/a |
+| <a name="output_power_workspace_id"></a> [power\_workspace\_id](#output\_power\_workspace\_id) | n/a |
+| <a name="output_vpc_instance_ip"></a> [vpc\_instance\_ip](#output\_vpc\_instance\_ip) | n/a |
 <!-- END_TF_DOCS -->
