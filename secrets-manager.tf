@@ -2,7 +2,7 @@
 #   name              = "${local.prefix}-secrets-manager"
 #   service           = "secrets-manager"
 #   plan              = "standard"
-#   location          = var.ibmcloud_region
+#   location          = var.secrets_manager_region
 #   resource_group_id = module.resource_group.resource_group_id
 #   tags              = local.tags
 
@@ -16,7 +16,7 @@
 
 resource "ibm_sm_secret_group" "sm_secret_group" {
   instance_id = data.ibm_resource_instance.secrets_manager.guid
-  region      = var.ibmcloud_region
+  region      = var.secrets_manager_region
   name        = "${local.prefix}-vpn-secret-group"
   description = "Group for all VPN related secrets."
 }
@@ -24,7 +24,7 @@ resource "ibm_sm_secret_group" "sm_secret_group" {
 resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate_root_CA" {
   depends_on                        = [ibm_sm_secret_group.sm_secret_group]
   instance_id                       = data.ibm_resource_instance.secrets_manager.guid
-  region                            = var.ibmcloud_region
+  region                            = var.secrets_manager_region
   name                              = "${local.prefix}-vpn-root-ca"
   common_name                       = "${local.prefix}-vpn ca"
   max_ttl                           = "8760h"
@@ -41,7 +41,7 @@ resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate
 resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediate_CA" {
   depends_on                        = [ibm_sm_private_certificate_configuration_root_ca.private_certificate_root_CA]
   instance_id                       = data.ibm_resource_instance.secrets_manager.guid
-  region                            = var.ibmcloud_region
+  region                            = var.secrets_manager_region
   name                              = "${local.prefix}-vpn-intermediate-ca"
   common_name                       = "${local.prefix}-vpn ca"
   signing_method                    = "internal"
@@ -60,7 +60,7 @@ resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediat
 resource "ibm_sm_private_certificate_configuration_template" "certificate_template" {
   depends_on            = [ibm_sm_private_certificate_configuration_intermediate_ca.intermediate_CA]
   instance_id           = data.ibm_resource_instance.secrets_manager.guid
-  region                = var.ibmcloud_region
+  region                = var.secrets_manager_region
   name                  = "${local.prefix}-cert-template"
   certificate_authority = "${local.prefix}-vpn-intermediate-ca"
   allow_subdomains      = true
@@ -70,7 +70,7 @@ resource "ibm_sm_private_certificate_configuration_template" "certificate_templa
 resource "ibm_sm_private_certificate" "sm_private_certificate" {
   depends_on           = [ibm_sm_private_certificate_configuration_template.certificate_template]
   instance_id          = data.ibm_resource_instance.secrets_manager.guid
-  region               = var.ibmcloud_region
+  region               = var.secrets_manager_region
   name                 = "${local.prefix}-vpn-server-cert"
   certificate_template = resource.ibm_sm_private_certificate_configuration_template.certificate_template.name
   common_name          = "vpn.example.com"

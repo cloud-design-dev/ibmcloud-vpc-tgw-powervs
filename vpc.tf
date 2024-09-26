@@ -42,7 +42,7 @@ resource "ibm_is_virtual_network_interface" "compute" {
 }
 
 resource "ibm_is_instance" "compute" {
-  name           = local.prefix
+  name           = "${local.prefix}-compute"
   vpc            = ibm_is_vpc.vpc.id
   image          = data.ibm_is_image.base.id
   profile        = var.compute_instance_profile
@@ -68,3 +68,17 @@ resource "ibm_is_instance" "compute" {
   keys = [data.ibm_is_ssh_key.sshkey.id]
   tags = concat(local.tags, ["zone:${local.vpc_zones[0].zone}"])
 }
+
+resource "ibm_is_vpc_routing_table" "vpn_routing_table" {
+  vpc                              = ibm_is_vpc.vpc.id
+  name                             = "${local.prefix}-vpc-tgw-routing-table"
+  route_direct_link_ingress        = false
+  route_transit_gateway_ingress    = true
+  route_vpc_zone_ingress           = false
+  accept_routes_from_resource_type = ["vpn_server"]
+  advertise_routes_to              = ["transit_gateway"]
+}
+
+# a new route table
+# accepts from the VPN server
+# advertises tgw route

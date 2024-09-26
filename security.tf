@@ -13,6 +13,24 @@ module "add_rules_to_default_vpc_security_group" {
         port_max = 443
       }
       remote = "0.0.0.0/0"
+    },
+    {
+      name      = "allow-icmp-inbound"
+      direction = "inbound"
+      icmp = {
+        type = 8
+        code = 0
+      }
+      remote = "0.0.0.0/0"
+    },
+    {
+      name      = "allow-ssh-vpn-inbound"
+      direction = "inbound"
+      tcp = {
+        port_min = 22
+        port_max = 22
+      }
+      remote = "0.0.0.0/0"
     }
   ]
   tags = local.tags

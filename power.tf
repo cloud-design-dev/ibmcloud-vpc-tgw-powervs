@@ -16,3 +16,20 @@ resource "ibm_pi_network" "power_network" {
     pi_ending_ip_address   = "172.16.0.100"
   }
 }
+
+
+resource "ibm_pi_instance" "linux" {
+  pi_memory            = "2"
+  pi_processors        = "0.25"
+  pi_instance_name     = "${local.prefix}-power-vm"
+  pi_proc_type         = "shared"
+  pi_image_id          = var.power_image_id
+  pi_key_pair_name     = "linux-power"
+  pi_sys_type          = "s922"
+  pi_cloud_instance_id = ibm_pi_workspace.workspace.id
+  pi_pin_policy        = "none"
+  pi_health_status     = "WARNING"
+  pi_network {
+    network_id = ibm_pi_network.power_network.network_id
+  }
+}

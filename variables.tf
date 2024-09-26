@@ -7,7 +7,7 @@ variable "ibmcloud_api_key" {
 variable "ibmcloud_region" {
   description = "The IBM Cloud region where the VPC, Power, and related resources will be deployed"
   type        = string
-  default     = "us-south"
+  default     = ""
 }
 
 variable "project_prefix" {
@@ -70,3 +70,19 @@ variable "compute_instance_profile" {
   default     = "cx2-2x4"
 }
 
+
+variable "secrets_manager_region" {
+  description = "Region where Secrets manager instance is provisioned"
+  type        = string
+  default     = ""
+}
+
+variable "vpn_users" {
+  default = []
+}
+
+variable "power_image_id" {
+  description = "The ID of the PowerVS image to use for the PowerVS instance"
+  type        = string
+  default     = "264ab16d-e5d3-4817-8757-4f8a20ae87e5"
+}

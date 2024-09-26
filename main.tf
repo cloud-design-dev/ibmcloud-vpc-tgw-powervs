@@ -30,3 +30,26 @@ module "resource_group" {
   existing_resource_group_name = var.existing_resource_group
 }
 
+resource "ibm_iam_access_group" "vpn" {
+  name        = "${local.prefix}-vpn-access-group"
+  description = "For Client to Site VPN users"
+}
+
+resource "ibm_iam_access_group_policy" "vpn_policy" {
+  access_group_id = ibm_iam_access_group.vpn.id
+
+
+  resource_attributes {
+    name     = "serviceName"
+    value    = "is"
+    operator = "stringEquals"
+  }
+
+  roles = ["VPN Client"]
+}
+
+resource "ibm_iam_access_group_members" "vpn_members" {
+  count           = length(var.vpn_users) > 0 ? 1 : 0
+  access_group_id = ibm_iam_access_group.vpn.id
+  ibm_ids         = var.vpn_users
+}

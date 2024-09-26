@@ -70,3 +70,9 @@ resource "ibm_is_vpn_server_route" "vpc" {
   name        = "vpc-vpn-server-route"
 }
 
+resource "ibm_is_vpn_server_route" "power" {
+  vpn_server  = ibm_is_vpn_server.client_to_site.vpn_server
+  destination = var.vpn_client_cidr
+  action      = "deliver"
+  name        = "power-vpn-server-route"
+}
