@@ -58,8 +58,8 @@ variable "compute_base_image" {
   default     = "ibm-ubuntu-22-04-4-minimal-amd64-4"
 }
 
-variable "existing_ssh_key" {
-  description = "Name of an existing SSH key in the region."
+variable "existing_vpc_ssh_key" {
+  description = "Name of an existing VPC SSH key in the region."
   type        = string
   default     = ""
 }
@@ -70,19 +70,20 @@ variable "compute_instance_profile" {
   default     = "cx2-2x4"
 }
 
-
 variable "secrets_manager_region" {
-  description = "Region where Secrets manager instance is provisioned"
+  description = "Region where the Secrets Manager instance is provisioned"
   type        = string
   default     = ""
 }
 
 variable "vpn_users" {
-  default = []
+  description = "Users to add to the VPN access group. This is the users email address."
+  type        = list(string)
+  default     = []
 }
 
 variable "power_image_id" {
-  description = "The ID of the PowerVS image to use for the PowerVS instance"
+  description = "The ID of the CentosStream 9 image to use for the PowerVS instance."
   type        = string
   default     = "264ab16d-e5d3-4817-8757-4f8a20ae87e5"
 }

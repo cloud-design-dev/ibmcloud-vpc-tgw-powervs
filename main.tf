@@ -53,3 +53,9 @@ resource "ibm_iam_access_group_members" "vpn_members" {
   access_group_id = ibm_iam_access_group.vpn.id
   ibm_ids         = var.vpn_users
 }
+
+resource "tls_private_key" "rsa" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
