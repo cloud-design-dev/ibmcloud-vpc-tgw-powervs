@@ -6,7 +6,7 @@ locals {
       zone = "${var.ibmcloud_region}-${zone + 1}"
     }
   }
-  
+
   tags = [
     "provider:ibm",
     "region:${var.ibmcloud_region}"
