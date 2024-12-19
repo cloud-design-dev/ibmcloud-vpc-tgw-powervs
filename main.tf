@@ -6,7 +6,7 @@ locals {
       zone = "${var.ibmcloud_region}-${zone + 1}"
     }
   }
-  power_network_id = "crn:v1:bluemix:public:power-iaas:${var.ibmcloud_region}:a/${data.ibm_iam_account_settings.iam_account_settings.account_id}:${ibm_pi_workspace.workspace.id}::"
+  
   tags = [
     "provider:ibm",
     "region:${var.ibmcloud_region}"

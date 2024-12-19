@@ -46,11 +46,6 @@ variable "default_address_prefix" {
   default     = "auto"
 }
 
-variable "power_zone" {
-  description = "The zone to deploy the PowerVS instance"
-  type        = string
-  default     = "dal12"
-}
 
 variable "compute_base_image" {
   description = "The base image to use for the compute instance"
@@ -80,10 +75,4 @@ variable "vpn_users" {
   description = "Users to add to the VPN access group. This is the users email address."
   type        = list(string)
   default     = []
-}
-
-variable "power_image_id" {
-  description = "The ID of the CentosStream 9 image to use for the PowerVS instance."
-  type        = string
-  default     = "264ab16d-e5d3-4817-8757-4f8a20ae87e5"
 }

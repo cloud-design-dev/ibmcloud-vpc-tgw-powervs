@@ -13,6 +13,3 @@ existing_resource_group = ""
 # Name of an existing Secrets Manager instance 
 existing_secrets_manager_instance = ""
 
-# Name of the zone in PowerVS region where you want to create the PowerVS resources. 
-# See note here about this value https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/pi_workspace#notes
-power_zone = ""

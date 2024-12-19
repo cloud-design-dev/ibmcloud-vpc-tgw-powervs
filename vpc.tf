@@ -22,20 +22,27 @@ resource "ibm_is_subnet" "vpn" {
   resource_group           = module.resource_group.resource_group_id
   vpc                      = ibm_is_vpc.vpc.id
   zone                     = local.vpc_zones[0].zone
-  total_ipv4_address_count = "32"
+  total_ipv4_address_count = "16"
   public_gateway           = ibm_is_public_gateway.gateway.id
   tags                     = concat(local.tags, ["zone:${local.vpc_zones[0].zone}"])
 }
 
-
-
+resource "ibm_is_subnet" "compute" {
+  name                     = "${local.prefix}-compute-subnet"
+  resource_group           = module.resource_group.resource_group_id
+  vpc                      = ibm_is_vpc.vpc.id
+  zone                     = local.vpc_zones[0].zone
+  total_ipv4_address_count = "64"
+  public_gateway           = ibm_is_public_gateway.gateway.id
+  tags                     = concat(local.tags, ["zone:${local.vpc_zones[0].zone}"])
+}
 
 resource "ibm_is_virtual_network_interface" "compute" {
   allow_ip_spoofing         = true
   auto_delete               = false
   enable_infrastructure_nat = true
   name                      = "${local.prefix}-vnic"
-  subnet                    = ibm_is_subnet.vpn.id
+  subnet                    = ibm_is_subnet.compute.id
   resource_group            = module.resource_group.resource_group_id
   security_groups           = [ibm_is_vpc.vpc.default_security_group]
   tags                      = concat(local.tags, ["zone:${local.vpc_zones[0].zone}"])
